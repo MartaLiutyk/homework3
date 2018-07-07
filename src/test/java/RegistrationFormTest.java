@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import static org.junit.Assert.*;
 
 public class RegistrationFormTest {
+    static Logger logger = Logger.getLogger(RegistrationFormTest.class);
 
     @Test
     public void getDataFromConsole() throws NoSuchMethodException {
@@ -17,8 +19,16 @@ public class RegistrationFormTest {
         data.put("email", "melodika99gmail.com");
         data.put("age", 19);
         int amountOfFields = data.size();
-        assertEquals(4, amountOfFields);
-        assertNotNull(data);
+        try {
+            assertEquals(4, amountOfFields);
+        } catch (AssertionError error) {
+            logger.error("Invalid amount of fields");
+        }
+        try {
+            assertNotNull(data);
+        } catch (AssertionError error) {
+            logger.error("You did not fill in the form!");
+        }
         String string = new String();
         Integer integer = new Integer(0);
         RegistrationForm registrationForm = new RegistrationForm();
