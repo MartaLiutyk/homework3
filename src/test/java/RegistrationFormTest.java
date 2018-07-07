@@ -12,7 +12,7 @@ public class RegistrationFormTest {
     @Test
     public void getDataFromConsole() throws NoSuchMethodException {
         HashMap data = new HashMap();
-        data.put("name", "Marta");
+        data.put("name", 12);
         data.put("surname", "Liutyk");
         data.put("email", "melodika99gmail.com");
         data.put("age", 19);
