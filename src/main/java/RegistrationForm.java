@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class RegistrationForm {
 
-    public RegistrationForm() {
+    public RegistrationForm() throws IOException {
     }
 
     public static HashMap getDataFromConsole() throws IOException {
@@ -40,8 +40,14 @@ public class RegistrationForm {
         return nameInLetters.toString();
     }
 
-    private static boolean emailValidCheck(HashMap info) {
-        String email = info.get("email").toString();
+    private static String getEmail() throws IOException {
+        HashMap usersInformation = getDataFromConsole();
+        String email = usersInformation.get("email").toString();
+        return email;
+    }
+
+    private static boolean emailValidCheck() throws IOException {
+        String email = getEmail();
         char[] emailInSymbols = email.toCharArray();
         int dogCheck = 0;
         boolean validEmail = true;
@@ -74,7 +80,7 @@ public class RegistrationForm {
         HashMap usersInformation = getDataFromConsole();
         nameValidCheck(usersInformation, "name");
         nameValidCheck(usersInformation, "surname");
-        emailValidCheck(usersInformation);
+        emailValidCheck();
         ageValidCheck(usersInformation);
         System.out.println(usersInformation);
     }
